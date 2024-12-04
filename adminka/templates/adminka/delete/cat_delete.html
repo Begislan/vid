@@ -1,0 +1,12 @@
+{% extends 'adminka/core.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Вы уверены, что хотите удалить категорию "{{ cat.name }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'cat_detail' cat.id %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

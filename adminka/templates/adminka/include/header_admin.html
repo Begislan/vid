@@ -1,0 +1,50 @@
+<div class="container">
+    <nav class="nav border p-3 bg-white shadow rounded">
+        <li class="p-3 border rounded bg-light fs-4 mx-2 text-success">
+            Админ панель
+        </li>
+        <li class="p-3 border rounded bg-light fs-4 mx-2 text-primary">
+            Добро пожаловать: <span class="fw-bold">{{ user.username }}</span>
+        </li>
+        <li class="p-3 border rounded bg-light fs-4 mx-2 text-primary">
+            <a class="nav-link text-danger fw-bold px-3" href="{% url 'logout' %}">Выход
+            </a>
+        </li>
+
+    </nav>
+
+    <style>
+        .nav-link {
+            font-size: 1rem; /* Размер текста */
+            transition: color 0.3s, transform 0.3s; /* Анимация при наведении */
+
+            &:hover {
+                color: darken($ color, 10%); /* Немного затемняем цвет */
+                transform: scale(1.1); /* Увеличиваем элемент */
+                text-decoration: underline; /* Подчёркивание при наведении */
+            }
+        }
+
+        .nav {
+            border-radius: 8px; /* Скруглённые края фона */
+            background-color: #f8f9fa; /* Светлый фон */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+
+            .nav-link {
+                padding: 10px 15px; /* Увеличиваем область клика */
+            }
+        }
+
+    </style>
+
+    <nav class="nav justify-content-center bg-light py-3 shadow">
+        <a class="nav-link text-primary fw-bold px-3" href="{% url 'adminka' %}">Видео</a>
+        <a class="nav-link text-success fw-bold px-3" href="{% url 'user_list' %}">Пользователи</a>
+        <a class="nav-link text-secondary fw-bold px-3" href="{% url 'cat_list' %}">Категории</a>
+        <a class="nav-link text-info fw-bold px-3" href="{% url 'feedback_list' %}">Отзывы</a>
+
+    </nav>
+</div>
+
+
+

@@ -1,0 +1,47 @@
+
+{% extends 'adminka/core.html' %}
+
+{% block content %}
+    <center><h1>Пользователи</h1></center>
+    
+   <section class="p-4 bg-light rounded shadow">
+    <div class="mb-3 text-end">
+        <a href="{% url 'user_create' %}">
+            <button class="btn btn-primary">
+                Добавить нового пользователя
+            </button>
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Фото</th>
+                <th scope="col">ФИО</th>
+                <th scope="col">Роль</th>
+                <th scope="col">Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in users %}
+                <tr>
+                    <th scope="row">{{ data.id }}</th>
+                    <td>
+                        <img src="{{ data.img.url }}" alt="Фото пользователя" width="50" class="rounded shadow-sm">
+                    </td>
+                    <td>{{ data.username }}</td>
+                    <td>{{ data.role }}</td>
+                    <td>
+                        <a href="{% url 'user_admin_detail' data.id %}">
+                            <button class="btn btn-info btn-sm">Полностью</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+
+{% endblock %}

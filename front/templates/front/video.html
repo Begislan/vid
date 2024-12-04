@@ -1,0 +1,71 @@
+{% extends 'front/base.html' %}
+{% block title %}Videos{% endblock %}
+{% block content %}
+    <section class="heading-page header-text" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>Каалаган программалоо тилин биз менен үйрөн</h6>
+                    <h2>Бардык видеолор</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="meetings-page" id="meetings">
+
+        <div class="container">
+            <div class="row">
+
+
+                {% for data in page %}
+                    <div class="col-md-4 text-light" style="backdrop-filter: blur(10px)">
+                        <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">{{ data.type }}</strong>
+                                <h3 class="mb-0">{{ data.title|truncatechars:7 }}</h3>
+                                <div class="mb-1 text-body-secondary">{{ data.date }}</div>
+                                <p class="card-text mb-auto">Ментор: {{ data.user }}</p>
+                                <a href="{% url 'video_details' data.id %}"
+                                   class="icon-link gap-1 icon-link-hover stretched-link">
+                                    Маалыматты окуу...
+                                </a>
+                            </div>
+                            <div class="col p-4 d-none d-lg-block">
+                                <img src="{{ data.img.url }}" class="bd-placeholder-img" width="200" height="250"
+                                     style="object-fit: cover">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <br>
+                <br>
+<center>
+                <div class="pagination">
+
+        <span class="step-links">
+            {% if page.has_previous %}
+                <a href="?page=1"> <button class="btn btn-info">||<</button> </a>
+                <a href="?page={{ page.previous_page_number }}"><button class="btn btn-success"><</button></a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page.number }} of {{ page.paginator.num_pages }}.
+            </span>
+
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}"><button class="btn btn-info">></button></a>
+                <a href="?page={{ page.paginator.num_pages }}"><button class="btn btn-success">>||</button> </a>
+            {% endif %}
+        </span>
+                </div>
+</center>
+
+
+            </div>
+        </div>
+
+        {% include 'front/include/footer.html' %}
+    </section>
+{% endblock %}

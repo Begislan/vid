@@ -1,0 +1,17 @@
+{% extends "adminka/core.html" %}
+
+{% block content %}
+    <ul>
+        <li>id: {{ cat.id }}</li>
+        <li>название : {{ cat.name }}</li>
+        {% if cat.img %}
+        	
+        
+        <li>Фото : <img src="{{ cat.img.url }}" width="200px" alt=""></li>
+    {% endif %} 
+    </ul>
+    <a href="{% url 'cat_update' cat.id %}"><button class="btn btn-success">Обновить</button></a>
+    <a href="{% url 'cat_delete' cat.id %}"><button class="btn btn-warning">Удалить</button></a>
+    
+
+{% endblock %}

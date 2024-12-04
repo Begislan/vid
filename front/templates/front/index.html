@@ -1,0 +1,385 @@
+{% extends 'front/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+        <source src="{% static 'assets/images/course-video.mp4' %}" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="caption">
+                        <h6>Салам cтудент!</h6>
+                        <h2>Программисттердин арасына кош келдиниз!</h2>
+                        <p>Программалоо - бул абстракттуу ойлорду машиналарды башкара турган жана дүйнөнү өзгөртө
+                            турган конкреттүү көрсөтмөлөргө айландыруу өнөрү
+                        </p>
+                        <div class="main-button-red">
+                            <div><a href="{% url 'cats' %}">Үйрөнүү</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-service-item owl-carousel">
+
+                    <div class="item">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/service-icon-01.png' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>Так билим</h4>
+                            <p>Биздин платформада программалоо тилдерин өзүңүз тандаган ментор менен жана өзүңүзгө
+                                ыңгайлуу жерде
+                                үйрөнө аласыз! </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/service-icon-02.png' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>Тажрыйбалуу ментор</h4>
+                            <p>Биздин платформада программалоо тилдерин өзүңүз тандаган ментор менен жана өзүңүзгө
+                                ыңгайлуу жерде
+                                үйрөнө аласыз!</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/service-icon-03.png' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>Мыкты студент</h4>
+                            <p>Биздин платформада программалоо тилдерин өзүңүз тандаган ментор менен жана өзүңүзгө
+                                ыңгайлуу жерде
+                                үйрөнө аласыз!</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/service-icon-02.png' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>Суроо-жооп</h4>
+                            <p>Биздин платформада программалоо тилдерин өзүңүз тандаган ментор менен жана өзүңүзгө
+                                ыңгайлуу жерде
+                                үйрөнө аласыз!</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/service-icon-03.png' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>Баарлашуу</h4>
+                            <p>Биздин платформада программалоо тилдерин өзүңүз тандаган ментор менен жана өзүңүзгө
+                                ыңгайлуу жерде
+                                үйрөнө аласыз!</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="upcoming-meetings" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>Тиркеменин материалдары</h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories">
+                    <h4>Видеолордун категориялары</h4>
+                    <ul>
+                        {% if typeVideos %}
+                        {% for typeVideos in typeVideos %}
+                        <p>
+                            <li>
+                                <a href="{% url 'category_details' typeVideos.pk %}">{{ typeVideos.name }}</a>
+                            </li>
+                        </p>
+                        {% endfor %}
+                        {% else %}
+                        <li>категория пока нет</li>
+                        {% endif %}
+                    </ul>
+                    <div class="main-button-red">
+                        <a href="{% url 'cats' %}">Видеолор</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+
+                    {% for video in videos %}
+                    <div class="col-lg-6">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <div class="price">
+                                    <span>{{ video.type }}</span>
+                                </div>
+                                {% if video.img %}
+                                <img src="{{ video.img.url }}" alt="Image">
+                                {% else %}
+                                <p>Изображение не загружено</p>
+                                {% endif %}
+                            </div>
+                            <div class="down-content">
+                                <a href="{% url 'video_details' video.id %}">
+                                    <h4>{{ video.title }}</h4>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="apply-now" id="apply">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="item">
+                            <h3>Тиркеменин максаты</h3>
+                            <p>Кыргыз тилиндеги видеосабактарды чогултуу жана автоматташтыруу.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="item">
+                            <h3>Сайтка маалымат чогултууга салым кошкон студенттер</h3>
+                            <p>МФТИТ институнун: <br>
+                                ПИ(б)-1-22 <br>
+                                ПИ(б)-2-22р <br>
+                                ПИ(б)-1-22w <br>
+                                тайпалары</p>
+                            <div class="main-button-red">
+                                <div><a href="https://wa.link/68e4k2"> Бизге кошул! </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="accordions is-first-expanded">
+                    <h4>Учурда бул тиркеме толук иштелип чыга элек!
+                        <br>
+                        Өз ойлоруңузуду сайттын аягындагы вацап ссылкага кирип билдирсеңиз болот
+                    </h4>
+                    {# <article class="accordion">#}
+                        {# <div class="accordion-head">#}
+                            {# <span>Сабактар кайсы тилде болот?</span>#}
+                            {# <span class="icon">#}
+                                {# <i class="icon fa fa-chevron-right"></i>#}
+                                {# </span>#}
+                            {# </div>#}
+                        {# <div class="accordion-body" style="">#}
+                            {# <div class="content">#}
+                                {# <p>Веб-тиркемедеги көпчүлүк маалыматтар эне тилде болот.</p>#}
+                                {# </div>#}
+                            {# </div>#}
+                        {# </article>#}
+                    {# <article class="accordion">#}
+                        {# <div class="accordion-head">#}
+                            {# <span>Сабактар кайсы тилде болот?</span>#}
+                            {# <span class="icon">#}
+                                {# <i class="icon fa fa-chevron-right"></i>#}
+                                {# </span>#}
+                            {# </div>#}
+                        {# <div class="accordion-body">#}
+                            {# <div class="content">#}
+                                {# <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium mollitia#}
+                                    {# consectetur soluta sed iusto#}
+                                    {# illo repellat aperiam distinctio, facere illum provident voluptas. Maiores ex#}
+                                    {# eaque, consequatur est sint#}
+                                    {# eius suscipit.Magni, totam culpa quaerat maiores aspernatur ad corporis#}
+                                    {# necessitatibus deserunt#}
+                                    {# eligendi omnis ut animi? </p>#}
+                                {# </div>#}
+                            {# </div>#}
+                        {# </article>#}
+                    {# <article class="accordion">#}
+                        {# <div class="accordion-head">#}
+                            {# <span>Сабактар кандай отулот? ким отот?</span>#}
+                            {# <span class="icon">#}
+                                {# <i class="icon fa fa-chevron-right"></i>#}
+                                {# </span>#}
+                            {# </div>#}
+                        {# <div class="accordion-body">#}
+                            {# <div class="content">#}
+                                {# <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium mollitia#}
+                                    {# consectetur soluta sed iusto#}
+                                    {# illo repellat aperiam distinctio, facere illum provident voluptas. Maiores ex#}
+                                    {# eaque, consequatur est sint#}
+                                    {# eius suscipit.Magni, totam culpa quaerat maiores aspernatur ad corporis#}
+                                    {# necessitatibus deserunt#}
+                                    {# eligendi omnis ut animi?</p>#}
+                                {# </div>#}
+                            {# </div>#}
+                        {# </article>#}
+                    {# <article class="accordion last-accordion">#}
+                        {# <div class="accordion-head">#}
+                            {# <span>Сабактар кайсы тилде болот?</span>#}
+                            {# <span class="icon">#}
+                                {# <i class="icon fa fa-chevron-right"></i>#}
+                                {# </span>#}
+                            {# </div>#}
+                        {# <div class="accordion-body">#}
+                            {# <div class="content">#}
+                                {# <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium mollitia#}
+                                    {# consectetur soluta sed iusto#}
+                                    {# illo repellat aperiam distinctio, facere illum provident voluptas. Maiores ex#}
+                                    {# eaque, consequatur est sint#}
+                                    {# eius suscipit.Magni, totam culpa quaerat maiores aspernatur ad corporis#}
+                                    {# necessitatibus deserunt#}
+                                    {# eligendi omnis ut animi?</p>#}
+                                {# </div>#}
+                            {# </div>#}
+                        {# </article>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our-facts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Биздин жетишкендиктер</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content percentage">
+                                    <div class="count-digit">94</div>
+                                    <div class="count-title">Колдонуулар</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content">
+                                    <div class="count-digit">126</div>
+                                    <div class="count-title">Иштеп чыгуучулар</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content new-students">
+                                    <div class="count-digit">2345</div>
+                                    <div class="count-title">Видео-сабактар</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content">
+                                    <div class="count-digit">32</div>
+                                    <div class="count-title">Сыйлыктар</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center" style="">
+                <div class="video" content="">
+
+
+                    <video id="my-video" class="w-100 video-js vjs-theme-city" controls preload="auto" width="850px"
+                        poster="{% static 'img/programmist.jpg' %}" data-setup="{}">
+                        <source src="{% static 'video/rolic.mp4' %}" type="video/mp4" />
+                        <source src="{% static 'video/rolic.mp4' %}" type="video/webm" />
+                        <p class="vjs-no-js">
+                            {{ video.title }}
+                        </p>
+                    </video>
+
+
+                    <!-- <img src="{% static 'programmist.jpg' %}" alt="" width="100%"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-us" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 align-self-center">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <form id="contact" action="" method="post">
+                            <div class="col-lg-12">
+                                <h2>Тиркеменин өнүгүүсү үчүн салымыңды кош</h2>
+                            </div>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Жөнөтүү</button>
+                            <div class="row">
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="right-info">
+                    <ul>
+                        <li>
+                            <h6>Телефон номер</h6>
+                            <span>+996 774 31 93 55</span>
+                        </li>
+                        <li>
+                            <h6>Instagram</h6>
+                            <span>oshsu_asst</span>
+                        </li>
+                        <li>
+                            <h6>Facebook</h6>
+                            <span>Асст Кафедрасы</span>
+                        </li>
+                        <li>
+                            <h6>Адрес</h6>
+                            <span>ул. Ленина 331, <br>2-этаж, кабинет 216</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'front/include/footer.html' %}
+</section>
+
+{% endblock %}

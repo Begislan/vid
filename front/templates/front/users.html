@@ -1,0 +1,76 @@
+{% extends 'front/base.html' %}
+{% block title %}Users{% endblock %}
+
+{% block content %}
+
+    <section class="heading-page header-text" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>Сайтка</h6>
+                    <h2>Видеосабак жайгаштыруучулар</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="meetings-page" id="meetings">
+
+        <div class="container">
+            <div class="row">
+
+
+                {% for data in page_obj %}
+                    <div class="col-md-4 text-light" style="backdrop-filter: blur(10px)">
+                        <div
+                                class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">{{ data.role }}</strong>
+                                <h3 class="mb-0">{{ data.username }}</h3>
+                                <a href="{% url 'user_detail' data.id %}"
+                                   class="icon-link gap-1 icon-link-hover stretched-link">
+                                    Маалыматты окуу...
+                                </a>
+                            </div>
+                            <div class="col p-4 d-none d-lg-block">
+                                <img src="{{ data.img.url }}" class="bd-placeholder-img" width="" height="250"
+                                     style="object-fit: cover">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
+
+
+
+
+
+                <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1"> <button class="btn btn-info">||<</button> </a>
+                <a href="?page={{ page_obj.previous_page_number }}"><button class="btn btn-success"><</button></a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}"><button class="btn btn-info">></button></a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"><button class="btn btn-success">>||</button> </a>
+            {% endif %}
+        </span>
+                </div>
+
+            </div>
+
+        </div>
+        {% include 'front/include/footer.html' %}
+
+    </section>
+
+
+{% endblock %}

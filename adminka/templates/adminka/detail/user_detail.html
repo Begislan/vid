@@ -1,0 +1,18 @@
+{% extends "adminka/core.html" %}
+
+{% block content %}
+    <ul>
+        <li>роль: {{ user.role }}</li>
+        <li>ФИО: {{ user.username }}</li>
+        <li>Фото пользователя: <img src="{{ user.img.url }}" width="200px" alt=""></li>
+    </ul>
+    <a href="{% url 'user_admin_update' user.id %}"><button class="btn btn-success">Обновить</button></a>
+    <a href="{% url 'user_admin_delete' user.id %}"><button class="btn btn-warning">Удалить</button></a>
+
+
+
+
+
+
+
+{% endblock %}

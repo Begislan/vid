@@ -1,0 +1,24 @@
+body {
+    background-image: url("/static/app/img/background3.jpeg");
+    /*background-size: cover;*/
+
+    /*backdrop-filter: blur(5px);*/
+    /*background-repeat: no-repeat;*/
+    background-position: center center;
+    background-attachment: fixed;
+
+    background-size: cover;
+}
+.card{
+    margin-left: 10px;
+}
+
+footer{
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+header{
+    backdrop-filter: blur(10px);
+
+}

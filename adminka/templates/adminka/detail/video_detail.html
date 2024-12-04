@@ -1,0 +1,14 @@
+{% extends "adminka/core.html" %}
+
+{% block content %}
+    <ul>
+        <li>категория: {{ video.type }}</li>
+        <li>заголовка: {{ video.title }}</li>
+        {% if video.img %}
+        <li>видеофото: <img src="{{ video.img.url }}" width="200px" alt=""></li>
+        {% endif %}
+    </ul>
+    <a href="{% url 'video_update' video.id %}"><button class="btn btn-success">Обновить</button></a>
+    <a href="{% url 'video_delete' video.id %}"><button class="btn btn-warning">Удалить</button></a>
+
+{% endblock %}

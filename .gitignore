@@ -1,0 +1,6 @@
+venv
+.idea
+.venv
+.vid_venv
+vid_venv
+static/video/rolic.mp4

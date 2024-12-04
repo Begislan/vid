@@ -1,0 +1,13 @@
+{% extends 'adminka/core.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Создать новую категорию</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Создать</button>
+        <a href="{% url 'cat_list' %}" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+{% endblock %}

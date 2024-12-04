@@ -1,0 +1,32 @@
+
+{% extends 'adminka/core.html' %}
+
+{% block content %}
+
+    <h1>Отзывы</h1>
+
+    <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Сообшение</th>
+                    <th scope="col">Дата</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in feedback %}
+                    <tr>
+                        <th scope="row">{{ data.id }}</th>
+                        <th scope="row"><img src="{{ data.fio }}" alt="" width="50px"></th>
+                        <td>{{ data.email }}</td>
+                        <td>{{ data.descriptions }}</td>
+                        <td>{{ data.date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+{% endblock %}

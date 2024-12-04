@@ -1,0 +1,15 @@
+{% extends "adminka/core.html" %}
+
+{% block content %}
+    <p>{{ video.title }}</p>
+    <p>{{ video.type }}</p>
+    <p>{{ video.user }}</p>
+    <img src="{{ video.img.url }}" width="200px" alt="">
+ <form method="POST" class="form-control">
+        {% csrf_token %}
+        Вы точно жотите удалить данный пользователь?
+        <input class="btn btn-danger" type="submit" value="Yes" />
+        <a class="btn btn-success" href="{% url 'user_list' %}">Cancel </a>
+    </form>
+
+{% endblock %}
